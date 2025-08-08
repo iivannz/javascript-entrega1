@@ -4,34 +4,127 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador - División de Cuenta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #27ae60;
+        }
+        
+        p {
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Simulador de División de Cuenta</h1>
-    
-    <div>
-        <h2>Descripción del Simulador</h2>
-        <p>
-            Esta aplicación web interactiva simula el proceso de dividir la cuenta de un restaurante 
-            entre varios comensales. El simulador permite ingresar el monto total de la cuenta, 
-            el número de personas que van a pagar, sus nombres, y automáticamente calcula 
-            un 10% de propina distribuyéndola equitativamente entre todos los participantes.
-        </p>
-        <p>
-            La aplicación utiliza funciones JavaScript para capturar datos de entrada mediante 
-            cuadros de diálogo interactivos, procesa la información aplicando cálculos matemáticos 
-            para la división equitativa, y presenta los resultados de manera clara y organizada 
-            a través de la consola del navegador y alertas informativas.
-        </p>
+    <div class="container">
+        <h1>🍽️ Simulador de División de Cuenta</h1>
         
-        <h3>Instrucciones</h3>
-        <p>
-            Abre la consola del navegador (F12) y haz clic en el botón "Iniciar Simulador" 
-            para comenzar el proceso de división de cuenta.
-        </p>
-        
-        <button onclick="iniciarSimulador()">Iniciar Simulador</button>
+        <div>
+            <h2>📋 Descripción del Simulador</h2>
+            <p>
+                Esta aplicación web interactiva simula el proceso de dividir la cuenta de un restaurante 
+                entre varios comensales. El simulador permite ingresar el monto total de la cuenta, 
+                el número de personas que van a pagar, sus nombres, y automáticamente calcula 
+                un 10% de propina distribuyéndola equitativamente entre todos los participantes.
+            </p>
+            <p>
+                La aplicación utiliza funciones JavaScript para capturar datos de entrada mediante 
+                cuadros de diálogo interactivos, procesa la información aplicando cálculos matemáticos 
+                para la división equitativa, y presenta los resultados de manera clara y organizada 
+                a través de la consola del navegador y alertas informativas.
+            </p>
+            
+            <div class="warning">
+                ⚠️ <strong>Importante:</strong> Para ver todos los mensajes del simulador, abre la consola del navegador presionando F12 (o clic derecho → Inspeccionar → Consola).
+            </div>
+            
+            <h3>🚀 Instrucciones de Uso</h3>
+            <p>
+                1. Abre la consola del navegador (F12)<br>
+                2. Haz clic en el botón "Iniciar Simulador"<br>
+                3. Sigue las instrucciones en los cuadros de diálogo<br>
+                4. ¡Disfruta dividiendo la cuenta de manera justa!
+            </p>
+            
+            <button onclick="iniciarSimulador()">🎯 Iniciar Simulador</button>
+            
+            <h3>📊 Características del Simulador</h3>
+            <ul>
+                <li>✅ Ingreso del monto total de la cuenta</li>
+                <li>✅ Definición del número de comensales</li>
+                <li>✅ Registro de nombres de cada comensal</li>
+                <li>✅ Cálculo automático de propina (10%)</li>
+                <li>✅ División equitativa entre todos</li>
+                <li>✅ Validación de datos de entrada</li>
+                <li>✅ Opción para repetir cálculos</li>
+            </ul>
+        </div>
     </div>
 
     <script src="simulador.js"></script>
+    
+    <!-- Script de respaldo en caso de que el archivo externo no cargue -->
+    <script>
+        // Verificar si el script externo se cargó correctamente
+        setTimeout(function() {
+            if (typeof iniciarSimulador === 'undefined') {
+                alert('Error: No se pudo cargar el archivo simulador.js. Asegúrate de que ambos archivos (index.html y simulador.js) estén en la misma carpeta.');
+            }
+        }, 1000);
+    </script>
 </body>
 </html>

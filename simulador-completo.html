@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador - División de Cuenta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #27ae60;
+        }
+        
+        p {
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ Simulador de División de Cuenta</h1>
+        
+        <div>
+            <h2>📋 Descripción del Simulador</h2>
+            <p>
+                Esta aplicación web interactiva simula el proceso de dividir la cuenta de un restaurante 
+                entre varios comensales. El simulador permite ingresar el monto total de la cuenta, 
+                el número de personas que van a pagar, sus nombres, y automáticamente calcula 
+                un 10% de propina distribuyéndola equitativamente entre todos los participantes.
+            </p>
+            <p>
+                La aplicación utiliza funciones JavaScript para capturar datos de entrada mediante 
+                cuadros de diálogo interactivos, procesa la información aplicando cálculos matemáticos 
+                para la división equitativa, y presenta los resultados de manera clara y organizada 
+                a través de la consola del navegador y alertas informativas.
+            </p>
+            
+            <div class="warning">
+                ⚠️ <strong>Importante:</strong> Para ver todos los mensajes del simulador, abre la consola del navegador presionando F12 (o clic derecho → Inspeccionar → Consola).
+            </div>
+            
+            <h3>🚀 Instrucciones de Uso</h3>
+            <p>
+                1. Abre la consola del navegador (F12)<br>
+                2. Haz clic en el botón "Iniciar Simulador"<br>
+                3. Sigue las instrucciones en los cuadros de diálogo<br>
+                4. ¡Disfruta dividiendo la cuenta de manera justa!
+            </p>
+            
+            <button onclick="iniciarSimulador()">🎯 Iniciar Simulador</button>
+            
+            <h3>📊 Características del Simulador</h3>
+            <ul>
+                <li>✅ Ingreso del monto total de la cuenta</li>
+                <li>✅ Definición del número de comensales</li>
+                <li>✅ Registro de nombres de cada comensal</li>
+                <li>✅ Cálculo automático de propina (10%)</li>
+                <li>✅ División equitativa entre todos</li>
+                <li>✅ Validación de datos de entrada</li>
+                <li>✅ Opción para repetir cálculos</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Simulador de División de Cuenta
+        // Variables globales
+        let montoTotal = 0;
+        let numeroComensales = 0;
+        let nombresComensales = [];
+        let propina = 0;
+        let totalConPropina = 0;
+        let montoPorPersona = 0;
+
+        // Constantes
+        const PORCENTAJE_PROPINA = 0.10; // 10% de propina
+
+        console.log("=== SIMULADOR DE DIVISIÓN DE CUENTA ===");
+        console.log("Bienvenido al simulador de división de cuenta");
+        console.log("Presiona F12 para ver la consola y hacer clic en 'Iniciar Simulador'");
+
+        // Función 1: ENTRADA DE DATOS - Obtener información del usuario
+        function obtenerDatosEntrada() {
+            console.log("\n--- RECOPILANDO DATOS ---");
+            
+            // Obtener monto total de la cuenta
+            do {
+                let montoIngresado = prompt("¿Cuál es el monto total de la cuenta? (Ingresa solo números)");
+                
+                // Validar que se ingresó algo
+                if (montoIngresado === null) {
+                    alert("Operación cancelada");
+                    return false;
+                }
+                
+                montoTotal = parseFloat(montoIngresado);
+                
+                // Validar que es un número válido y positivo
+                if (isNaN(montoTotal) || montoTotal <= 0) {
+                    alert("Por favor, ingresa un monto válido mayor a 0");
+                    montoTotal = 0;
+                }
+            } while (montoTotal <= 0);
+            
+            console.log(`Monto total de la cuenta: $${montoTotal}`);
+            
+            // Obtener número de comensales
+            do {
+                let numeroIngresado = prompt("¿Cuántos comensales van a dividir la cuenta?");
+                
+                if (numeroIngresado === null) {
+                    alert("Operación cancelada");
+                    return false;
+                }
+                
+                numeroComensales = parseInt(numeroIngresado);
+                
+                if (isNaN(numeroComensales) || numeroComensales <= 0) {
+                    alert("Por favor, ingresa un número válido de comensales mayor a 0");
+                    numeroComensales = 0;
+                }
+            } while (numeroComensales <= 0);
+            
+            console.log(`Número de comensales: ${numeroComensales}`);
+            
+            // Obtener nombres de los comensales
+            nombresComensales = []; // Limpiar array
+            
+            for (let i = 0; i < numeroComensales; i++) {
+                let nombre;
+                do {
+                    nombre = prompt(`Ingresa el nombre del comensal ${i + 1}:`);
+                    
+                    if (nombre === null) {
+                        alert("Operación cancelada");
+                        return false;
+                    }
+                    
+                    if (nombre.trim() === "") {
+                        alert("El nombre no puede estar vacío. Por favor, ingresa un nombre válido.");
+                    }
+                } while (nombre.trim() === "");
+                
+                nombresComensales.push(nombre.trim());
+                console.log(`Comensal ${i + 1}: ${nombre.trim()}`);
+            }
+            
+            return true;
+        }
+
+        // Función 2: PROCESAMIENTO DE DATOS - Calcular propina y división
+        function procesarDatos() {
+            console.log("\n--- PROCESANDO CÁLCULOS ---");
+            
+            // Calcular propina del 10%
+            propina = montoTotal * PORCENTAJE_PROPINA;
+            console.log(`Propina (10%): $${propina.toFixed(2)}`);
+            
+            // Calcular total con propina
+            totalConPropina = montoTotal + propina;
+            console.log(`Total con propina: $${totalConPropina.toFixed(2)}`);
+            
+            // Calcular monto por persona
+            montoPorPersona = totalConPropina / numeroComensales;
+            console.log(`Monto por persona: $${montoPorPersona.toFixed(2)}`);
+            
+            return true;
+        }
+
+        // Función 3: SALIDA DE DATOS - Mostrar resultados finales
+        function mostrarResultados() {
+            console.log("\n--- RESULTADOS FINALES ---");
+            
+            // Crear mensaje detallado para mostrar
+            let mensaje = "=== DIVISIÓN DE CUENTA ===\n\n";
+            mensaje += `Monto original: $${montoTotal.toFixed(2)}\n`;
+            mensaje += `Propina (10%): $${propina.toFixed(2)}\n`;
+            mensaje += `Total a pagar: $${totalConPropina.toFixed(2)}\n\n`;
+            mensaje += `Número de comensales: ${numeroComensales}\n`;
+            mensaje += `Monto por persona: $${montoPorPersona.toFixed(2)}\n\n`;
+            mensaje += "LISTA DE COMENSALES:\n";
+            
+            // Mostrar cada comensal con su monto a pagar
+            for (let i = 0; i < nombresComensales.length; i++) {
+                mensaje += `${i + 1}. ${nombresComensales[i]}: $${montoPorPersona.toFixed(2)}\n`;
+                console.log(`${nombresComensales[i]} debe pagar: $${montoPorPersona.toFixed(2)}`);
+            }
+            
+            // Mostrar resultado en alert
+            alert(mensaje);
+            
+            // Confirmar si desea realizar otro cálculo
+            let repetir = confirm("¿Deseas dividir otra cuenta?");
+            
+            if (repetir) {
+                iniciarSimulador();
+            } else {
+                alert("¡Gracias por usar el simulador de división de cuenta!");
+                console.log("Simulador finalizado. ¡Hasta la próxima!");
+            }
+        }
+
+        // Función principal que coordina todo el simulador
+        function iniciarSimulador() {
+            console.log("\n=== INICIANDO NUEVO CÁLCULO ===");
+            
+            // Llamar a las tres funciones principales en secuencia
+            if (obtenerDatosEntrada()) {
+                if (procesarDatos()) {
+                    mostrarResultados();
+                }
+            }
+        }
+
+        // Función adicional para mostrar información del simulador
+        function mostrarInformacion() {
+            console.log("\n=== INFORMACIÓN DEL SIMULADOR ===");
+            console.log("Este simulador te ayuda a:");
+            console.log("1. Calcular la propina (10% automático)");
+            console.log("2. Dividir el total entre todos los comensales");
+            console.log("3. Mostrar cuánto debe pagar cada persona");
+            console.log("4. Mantener registro de nombres para mejor organización");
+            console.log("\nPara usar el simulador, haz clic en el botón 'Iniciar Simulador'");
+        }
+
+        // Mostrar información inicial cuando se carga la página
+        window.addEventListener('load', function() {
+            mostrarInformacion();
+        });
+    </script>
+</body>
+</html>
