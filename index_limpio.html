@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Tienda Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .description {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .start-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+        }
+        .start-btn:hover {
+            background-color: #0056b3;
+        }
+        .instructions {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Tienda Online</h1>
+        
+        <div class="description">
+            <h2>Descripcion del Simulador</h2>
+            <p>
+                Este simulador permite gestionar una tienda online basica donde los usuarios pueden navegar por un catalogo de productos, 
+                agregar articulos a su carrito de compras, ver el resumen de su pedido y calcular el total a pagar. 
+                El sistema incluye funcionalidades como aplicacion de descuentos, validacion de stock y gestion de datos del cliente.
+            </p>
+            <p>
+                La interaccion se realiza completamente a traves de la consola del navegador y cuadros de dialogo, 
+                utilizando arrays para almacenar productos, objetos para representar items del carrito, 
+                y multiples funciones que procesan la informacion ingresada por el usuario para generar resultados dinamicos.
+            </p>
+        </div>
+
+        <div class="instructions">
+            <h3>Instrucciones</h3>
+            <p><strong>1.</strong> Abre la consola del navegador (F12 - Console)</p>
+            <p><strong>2.</strong> Haz clic en el boton "Iniciar Simulador"</p>
+            <p><strong>3.</strong> Sigue las instrucciones en los cuadros de dialogo</p>
+            <p><strong>4.</strong> Observa los resultados en la consola</p>
+        </div>
+
+        <button class="start-btn" onclick="iniciarSimulador()">Iniciar Simulador</button>
+        
+        <div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+            <h4>Caracteristicas Tecnicas Implementadas:</h4>
+            <ul>
+                <li>Variables, constantes y arrays</li>
+                <li>Funciones con entrada, procesamiento y salida de datos</li>
+                <li>Condicionales (if/else) y ciclos (for)</li>
+                <li>Cuadros de dialogo: Alert, Prompt, Confirm</li>
+                <li>Uso extensivo de console.log</li>
+                <li>Concatenacion de strings y saltos de linea</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/simulador.js"></script>
+</body>
+</html>
